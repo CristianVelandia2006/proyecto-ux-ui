@@ -1,0 +1,56 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5%;
+    border-bottom: 3px solid black;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo-img {
+    width: 30px;
+    height: 30px;
+}
+
+.h1-navbar {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: start;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+}
+
+#btn-iniciar-sesion {
+    padding: 5px 16px;
+    background-color: transparent;
+    color: #333;
+    border: 2px solid black;
+    cursor: pointer;
+    align-items: center;
+}
+
+#btn-reservar {
+    
+    padding: 5px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
