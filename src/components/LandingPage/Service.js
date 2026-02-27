@@ -1,7 +1,7 @@
 import React from 'react';
 import './Service.css';
 
-const Services = () => {
+const Service = () => {
     const servicesList = [
         { id: 1, icon: '✂️', title: 'Corte Clásico', price: '$25.000', time: '30 min' },
         { id: 2, icon: '🧔', title: 'Corte + Barba', price: '$45.000', time: '50 min' },
@@ -28,4 +28,4 @@ const Services = () => {
     );
 };
 
-export default Services;
+export default Service;

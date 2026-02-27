@@ -14,8 +14,8 @@ const Navbar = () => {
                 <li><a href="#barberos">BARBEROS</a></li>
                 <li><a href="#galeria">GALERÍA</a></li>
                 <li><a href="#contacto">CONTACTO</a></li>
-                <Link to="/dashboard" className="navbar-button" id="btn-iniciar-sesion">INICIAR SESIÓN</Link>
-                <li><button className="navbar-button" id="btn-reservar">RESERVAR CITA</button></li>
+                <Link to="/dashboard" className="navbar-button" id="btn-reservar">RESERVAR CITA </Link>
+                <Link to="/login" className="navbar-button" id="btn-iniciar-sesion">INICIAR SESIÓN</Link>
             </ul>
         </nav>
     );
