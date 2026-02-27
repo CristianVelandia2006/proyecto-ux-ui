@@ -1,0 +1,41 @@
+.barbero-theme .dash-sidebar {
+  background: #1a1a1a; /* Más oscuro para diferenciar del cliente */
+  color: #ffffff;
+}
+
+.barbero-avatar {
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: bold;
+}
+
+.sidebar-status {
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  margin: 10px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.status-dot.online {
+  width: 8px;
+  height: 8px;
+  background: #4caf50;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #4caf50;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-display {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  padding: 0 10px;
+}
