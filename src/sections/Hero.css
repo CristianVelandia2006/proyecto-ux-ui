@@ -1,0 +1,72 @@
+.hero-container {
+    display: flex;
+    min-height: 80vh;
+}
+
+.hero-content {
+    flex: 1;
+    background-color: #f4efe8;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 3px solid black;
+    border-right: 2px solid black;
+}
+
+.h1-hero {
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 4rem;
+    margin: 0 0 20px 0;
+    color: black;
+}
+
+.p-hero {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #4a5568;
+    max-width: 500px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+#btn-ver-servicios {
+    padding: 5px 16px;
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+#btn-reservar-hero {
+    padding: 5px 16px;
+    background-color: rgb(221, 163, 122);
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+/* Lado derecho (Gris) */
+.hero-image {
+    flex: 1;
+    background-color: #d1cdc7; /* Color gris claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid black;
+}
+
+.image-placeholder {
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+}
