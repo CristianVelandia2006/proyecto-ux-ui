@@ -1,0 +1,47 @@
+.footer-container {
+    background-color: white;
+    color: black;
+    padding: 60px 5%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+}
+
+.footer-logo {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    color: #4a5568;
+}
+
+.footer-links h4 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #4a5568;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: black;
+}

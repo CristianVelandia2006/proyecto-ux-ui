@@ -1,0 +1,38 @@
+.cta-container {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 60px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid black;
+}
+
+.cta-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+}
+
+.cta-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin: 0;
+}
+
+.cta-button {
+    background-color: #c5a47e;
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #a5845e;
+}
