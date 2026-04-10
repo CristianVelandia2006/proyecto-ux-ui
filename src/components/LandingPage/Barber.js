@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Barber.css';
 
 const Barbers = () => {
+    const navigate = useNavigate();
     const barbersList = [
         { id: 1, name: 'Carlos Mendoza', specialty: 'Especialista en Fade & Barba', rating: 4.9 },
         { id: 2, name: 'Andrés Ruiz', specialty: 'Corte Clásico & Moderno', rating: 4.8 },
@@ -29,7 +31,7 @@ const Barbers = () => {
                                 {'☆'.repeat(5 - Math.floor(barber.rating))}
                                 <span> - {barber.rating}</span>
                             </div>
-                            <button className="barber-btn">VER DISPONIBILIDAD</button>
+                            <button className="barber-btn" onClick={() => navigate('/login')}>VER DISPONIBILIDAD</button>
                         </div>
                     </div>
                 ))}

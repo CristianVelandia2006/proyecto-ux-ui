@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // 1. Estado para manejar mensajes de error
@@ -19,7 +21,8 @@ const Login = () => {
             console.log('Login exitoso');
             setError('');
             alert('¡Bienvenido a Barbería!');
-            // Aquí redirigirías al dashboard usando react-router
+            // Redirigir al dashboard
+            navigate('/dashboard');
         } else {
             console.log('Credenciales incorrectas');
             setError('Correo o contraseña incorrectos.');
@@ -62,7 +65,7 @@ const Login = () => {
                 </form>
                 
                 <p className="signup-link">
-                    ¿No tienes cuenta? <a href="#">Regístrate</a>
+                    ¿No tienes cuenta? <button type="button" style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>Regístrate</button>
                 </p>
             </div>
         </div>

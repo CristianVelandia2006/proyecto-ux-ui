@@ -1,93 +1,93 @@
-import time
+import tim
 import sys
-from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+rom slnim import wbrivr
+rom slnim.wbrivr.g.srvi import rvi
+rom slnim.wbrivr.ommon.by import y
+rom slnim.wbrivr.spport.i import brivrit
+rom slnim.wbrivr.spport import xpt_onitions s 
 
-def iniciar_login_automatico():
-    """Inicia el login automático en la aplicación"""
-    print("--- BOT INICIADO: ESPERANDO A QUE CARGUE REACT ---\n")
+ iniir_login_tomtio()
+    """nii l login tomátio n l pliión"""
+    print("---        ---n")
     
-    options = webdriver.EdgeOptions()
-    options.add_experimental_option("detach", True)
+    options  wbrivr.gptions()
+    options._xprimntl_option("th", r)
     
-    driver = None
-    try:
-        # Inicializar el driver
-        service = Service(executable_path="msedgedriver.exe")
-        driver = webdriver.Edge(service=service, options=options)
+    rivr  on
+    try
+        # niilizr l rivr
+        srvi  rvi(xtbl_pth"msgrivr.x")
+        rivr  wbrivr.g(srvisrvi, optionsoptions)
         
-        print("✓ Abriendo navegador...")
-        driver.get("http://localhost:3000")
+        print("✓ brino nvgor...")
+        rivr.gt("http//lolhost")
         
-        # Esperar a que React cargue
-        wait = WebDriverWait(driver, 15)
-        print("✓ Esperando que cargue la página...")
-        time.sleep(2)
+        # sprr  q t rg
+        wit  brivrit(rivr, )
+        print("✓ sprno q rg l págin...")
+        tim.slp()
         
-        print("Buscando botón 'INICIAR SESIÓN'...")
-        try:
-            boton_iniciar_sesion = wait.until(
-                EC.element_to_be_clickable((By.ID, "btn-iniciar-sesion"))
+        print("sno botón ' Ó'...")
+        try
+            boton_iniir_ssion  wit.ntil(
+                .lmnt_to_b_likbl((y., "btn-iniir-ssion"))
             )
-            print("Click en login")
-            boton_iniciar_sesion.click()
-            time.sleep(2)  # Esperar a que cargue la página de login
-        except Exception as e:
-            print(f"  ⚠ Error al buscar botón: {e}")
-            # Si no encuentra el botón, intenta navegar directamente
-            print("  → Navegando directamente a /login...")
-            driver.get("http://localhost:3000/login")
-            time.sleep(2)
+            print("lik n login")
+            boton_iniir_ssion.lik()
+            tim.slp()  # sprr  q rg l págin  login
+        xpt xption s 
+            print("  ⚠ rror l bsr botón {}")
+            # i no nntr l botón, intnt nvgr irtmnt
+            print("  → vgno irtmnt  /login...")
+            rivr.gt("http//lolhost/login")
+            tim.slp()
         
-        # Paso 2: Buscar y llenar el campo de email
-        print("✓ Buscando campo de correo...")
-        input_email = wait.until(EC.presence_of_element_located((By.ID, "email")))
-        input_email.clear()
-        input_email.send_keys("admin@barberia.com")
-        print("  → Email ingresado")
-        time.sleep(0.5)
+        # so  sr y llnr l mpo  mil
+        print("✓ sno mpo  orro...")
+        inpt_mil  wit.ntil(.prsn_o_lmnt_lot((y., "mil")))
+        inpt_mil.lr()
+        inpt_mil.sn_kys("minbrbri.om")
+        print("  → mil ingrso")
+        tim.slp(.)
         
-        # Paso 3: Buscar y llenar el campo de contraseña
-        print("✓ Buscando campo de contraseña...")
-        input_pass = driver.find_element(By.ID, "password")
-        input_pass.clear()
-        input_pass.send_keys("barber123")
-        print("  → Contraseña ingresada")
-        time.sleep(0.5)
+        # so  sr y llnr l mpo  ontrsñ
+        print("✓ sno mpo  ontrsñ...")
+        inpt_pss  rivr.in_lmnt(y., "psswor")
+        inpt_pss.lr()
+        inpt_pss.sn_kys("brbr")
+        print("  → ontrsñ ingrs")
+        tim.slp(.)
         
-        # Paso 4: Hacer clic en el botón ENTRAR
-        print("✓ Buscando botón 'ENTRAR'...")
-        boton_entrar = driver.find_element(By.CLASS_NAME, "btn-primary")
-        boton_entrar.click()
-        print("  → Botón clickeado")
-        time.sleep(1)
+        # so  r li n l botón 
+        print("✓ sno botón ''...")
+        boton_ntrr  rivr.in_lmnt(y._, "btn-primry")
+        boton_ntrr.lik()
+        print("  → otón liko")
+        tim.slp()
         
-        # Paso 5: Esperar y aceptar el alert
-        print("✓ Esperando confirmación...")
-        alert = wait.until(EC.alert_is_present())
-        print(f"✓ Mensaje: {alert.text}")
-        alert.accept()
+        # so  sprr y ptr l lrt
+        print("✓ sprno onirmión...")
+        lrt  wit.ntil(.lrt_is_prsnt())
+        print("✓ nsj {lrt.txt}")
+        lrt.pt()
         
-        # Esperar a que cargue el dashboard
-        print("✓ Esperando que cargue el dashboard...")
-        time.sleep(3)
+        # sprr  q rg l shbor
+        print("✓ sprno q rg l shbor...")
+        tim.slp()
         
-        print("\n✅ ¡LOGIN AUTOMÁTICO EXITOSO!\n")
-        return True
+        print("n ¡ Á !n")
+        rtrn r
         
-    except Exception as e:
-        print(f"\n❌ ERROR: {e}\n")
-        import traceback
-        traceback.print_exc()
-        return False
+    xpt xption s 
+        print("n  {}n")
+        import trbk
+        trbk.print_x()
+        rtrn ls
     
-    finally:
-        # Mantener el navegador abierto
-        if driver:
-            print("Navegador abierto. Ciérralo manualmente cuando termines.")
+    inlly
+        # ntnr l nvgor birto
+        i rivr
+            print("vgor birto. iérrlo mnlmnt no trmins.")
 
-if __name__ == "__main__":
-    iniciar_login_automatico()
+i __nm__  "__min__"
+    iniir_login_tomtio()

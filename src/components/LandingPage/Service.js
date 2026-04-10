@@ -1,13 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Service.css';
 
 const Service = () => {
+    const navigate = useNavigate();
+
     const servicesList = [
         { id: 1, icon: '✂️', title: 'Corte Clásico', price: '$25.000', time: '30 min' },
         { id: 2, icon: '🧔', title: 'Corte + Barba', price: '$45.000', time: '50 min' },
         { id: 3, icon: '🪒', title: 'Afeitado Navaja', price: '$35.000', time: '40 min' },
         { id: 4, icon: '💆', title: 'Tratamiento Facial', price: '$30.000', time: '35 min' },
     ];
+
+    const handleReservarServicio = (serviceName) => {
+        alert(`Reservar ${serviceName} - Redirigiendo al login...`);
+        navigate('/login');
+    };
 
     return (
         <section className="services-container">
@@ -20,7 +28,7 @@ const Service = () => {
                         <h3 className="service-name">{service.title}</h3>
                         <p className="service-price">{service.price}</p>
                         <p className="service-time">⏱ {service.time}</p>
-                        <button className="service-btn">RESERVAR</button>
+                        <button className="service-btn" onClick={() => handleReservarServicio(service.title)}>RESERVAR</button>
                     </div>
                 ))}
             </div>

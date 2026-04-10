@@ -1,8 +1,30 @@
 import React from 'react';
-import StatCard from '../StatCard'; 
+import { useNavigate } from 'react-router-dom';
+import StatCard from '../StatCard';
 import '../UserDashboard/UserStyles/Dashboard.css'; // Usamos tu CSS base
 
 const BarberoDashboard = () => {
+  const navigate = useNavigate();
+
+  const handleBloquearHora = () => {
+    alert('Bloquear Hora - Funcionalidad próximamente');
+  };
+
+  const handleAnadirCita = () => {
+    alert('Añadir Cita - Funcionalidad próximamente');
+  };
+
+  const handleIniciarServicio = () => {
+    alert('Servicio iniciado - ¡Buen trabajo!');
+  };
+
+  const handleNoAsistio = () => {
+    alert('Cliente marcado como no asistió');
+  };
+
+  const handleLogout = () => {
+    navigate('/');
+  };
   return (
     <div className="screen active" id="screen-barbero">
       <div className="dash-layout">
@@ -31,7 +53,7 @@ const BarberoDashboard = () => {
             <div className="nav-item"><span className="nav-icon">⚙</span> Ajustes</div>
             
             <div style={{ flex: 1 }}></div>
-            <div className="nav-item" style={{ marginBottom: '12px' }}>
+            <div className="nav-item logout-btn" style={{ marginBottom: '12px' }} onClick={handleLogout}>
               <span className="nav-icon">←</span> Cerrar sesión
             </div>
           </nav>
@@ -45,8 +67,8 @@ const BarberoDashboard = () => {
               <div className="page-subtitle">Lunes, 23 de febrero 2026 — <span style={{color: '#3a8a4e'}}>● Online</span></div>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
-                <button className="wf-btn">Bloquear Hora</button>
-                <button className="wf-btn accent">+ Añadir Cita</button>
+                <button className="wf-btn" onClick={handleBloquearHora}>Bloquear Hora</button>
+                <button className="wf-btn accent" onClick={handleAnadirCita}>+ Añadir Cita</button>
             </div>
           </header>
 
@@ -86,8 +108,8 @@ const BarberoDashboard = () => {
                       <div className="appt-badge badge-confirmed">Confirmado</div>
                     </div>
                     <div className="featured-actions">
-                      <button className="mini-btn accent">Iniciar Servicio</button>
-                      <button className="mini-btn">No asistió</button>
+                      <button className="mini-btn accent" onClick={handleIniciarServicio}>Iniciar Servicio</button>
+                      <button className="mini-btn" onClick={handleNoAsistio}>No asistió</button>
                     </div>
                   </div>
 
