@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatCard from '../StatCard';
-import '../UserDashboard/UserStyles/Dashboard.css'; // Usamos tu CSS base
+import './BarberoDashboard.css';
+
 
 const BarberoDashboard = () => {
   const navigate = useNavigate();

@@ -9,6 +9,8 @@ import CallBarber from './components/LandingPage/CallBarber';
 import Footer from './components/LandingPage/Footer';
 import UserDashboard from './components/UserDashboard/UserDashboard';
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import BarberoDashboard from './components/BarberDashboard/BarberoDashboard';
 import { AppointmentProvider } from './AppointmentContext';
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
             } />
             <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/barber-dashboard" element={<BarberoDashboard />} />
           </Routes>
         </div>
       </Router>

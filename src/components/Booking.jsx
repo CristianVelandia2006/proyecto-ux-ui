@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppointments } from '../AppointmentContext';
 import './Booking.css';
 
+export const servicePrices = {
+  'Corte Clásico': 20000,
+  'Corte Moderno': 25000,
+  'Afeitado Navaja': 15000,
+  'Barba': 10000,
+  'Corte + Barba': 30000,
+  'Tratamiento Facial': 35000
+};
+
 const Booking = () => {
   const { addAppointment } = useAppointments();
+  
+  // Estado para los barberos obtenidos desde el registro
+  const [barbers, setBarbers] = useState([]);
+  
+  // Estado para las horas (base)
+  const [baseTimeSlots, setBaseTimeSlots] = useState(['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30']);
+  
   const [selectedBarber, setSelectedBarber] = useState('');
   const [selectedService, setSelectedService] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+  
+  // Estado para las citas existentes y filtrar horas ocupadas
+  const [appointments, setAppointments] = useState([]);
 
-  const barbers = [
-    { id: 1, name: 'Carlos Mendoza', specialty: 'Especialista en Fade & Barba' },
-    { id: 2, name: 'Andrés Ruiz', specialty: 'Corte Clásico & Moderno' },
-    { id: 3, name: 'Miguel Torres', specialty: 'Afeitado & Tratamientos' },
-  ];
+  // 1. Efecto para cargar barberos, horario y citas previas
+  useEffect(() => {
+    const allUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const registeredBarbers = allUsers.filter(user => user.role === 'barber');
+    setBarbers(registeredBarbers);
 
-  const services = [
-    'Corte Clásico',
-    'Corte Moderno',
-    'Afeitado Navaja',
-    'Barba',
-    'Corte + Barba',
-    'Tratamiento Facial'
-  ];
+    const savedSchedule = localStorage.getItem('barberSchedule');
+    if (savedSchedule) {
+      setBaseTimeSlots(JSON.parse(savedSchedule));
+    }
 
-  const timeSlots = [
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
-    '17:00', '17:30', '18:00', '18:30'
-  ];
+    const savedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    setAppointments(savedAppointments);
+  }, []);
+
+  // Filtrar horas ocupadas para la fecha seleccionada
+  const availableTimeSlots = baseTimeSlots.filter(time => {
+    const isBooked = appointments.some(
+      apt => apt.date === selectedDate && apt.time === time && apt.barber === (barbers.find(b => b.email === selectedBarber)?.username || '')
+    );
+    return !isBooked;
+  });
+
+  const services = Object.keys(servicePrices);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,9 +60,12 @@ const Booking = () => {
       return;
     }
 
-    const barber = barbers.find(b => b.id === parseInt(selectedBarber));
+    const barber = barbers.find(b => b.email === selectedBarber);
+    
     const appointment = {
-      barber: barber.name,
+      id: Date.now(),
+      barber: barber.username,
+      clientName: "Cliente",
       service: selectedService,
       date: selectedDate,
       time: selectedTime,
@@ -47,8 +73,16 @@ const Booking = () => {
     };
 
     addAppointment(appointment);
-    alert('¡Cita reservada exitosamente!');
-    // Reset form
+
+    const existingAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    const updatedAppointments = [...existingAppointments, appointment];
+    localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+    
+    // Actualizar estado local
+    setAppointments(updatedAppointments);
+
+    alert(`¡Cita reservada con ${barber.username} exitosamente!`);
+    
     setSelectedBarber('');
     setSelectedService('');
     setSelectedDate('');
@@ -66,12 +100,17 @@ const Booking = () => {
             onChange={(e) => setSelectedBarber(e.target.value)}
             required
           >
-            <option value="">-- Seleccionar --</option>
-            {barbers.map(barber => (
-              <option key={barber.id} value={barber.id}>
-                {barber.name} - {barber.specialty}
-              </option>
-            ))}
+            <option value="">-- Seleccionar Barbero --</option>
+            {barbers.length > 0 ? (
+              barbers.map((barber) => (
+                <option key={barber.email} value={barber.email}>
+                  {/* RF-11: Visualización de información básica antes de reservar */}
+                  {barber.username} — {barber.experience || '0'} años exp. | Especialidad: {barber.specialty || 'General'}
+                </option>
+              ))
+            ) : (
+              <option disabled>No hay barberos registrados</option>
+            )}
           </select>
         </div>
 
@@ -82,7 +121,7 @@ const Booking = () => {
             onChange={(e) => setSelectedService(e.target.value)}
             required
           >
-            <option value="">-- Seleccionar --</option>
+            <option value="">-- Seleccionar Servicio --</option>
             {services.map(service => (
               <option key={service} value={service}>{service}</option>
             ))}
@@ -106,15 +145,21 @@ const Booking = () => {
             value={selectedTime}
             onChange={(e) => setSelectedTime(e.target.value)}
             required
+            disabled={!selectedDate}
           >
-            <option value="">-- Seleccionar --</option>
-            {timeSlots.map(time => (
+            <option value="">
+              {selectedDate ? '-- Seleccionar Hora --' : '-- Primero selecciona fecha --'}
+            </option>
+            {availableTimeSlots.map(time => (
               <option key={time} value={time}>{time}</option>
             ))}
+            {selectedDate && availableTimeSlots.length === 0 && (
+              <option disabled>No hay horas disponibles este día</option>
+            )}
           </select>
         </div>
 
-        <button type="submit" className="booking-btn">Reservar Cita</button>
+        <button type="submit" className="booking-btn">Confirmar Reserva</button>
       </form>
     </div>
   );
